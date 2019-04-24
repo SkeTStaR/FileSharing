@@ -1,13 +1,32 @@
 package com.sketstar.filesharing.models;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     @Column(name = "surname")
     private String surname;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(unique = true)
+    private String login;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "Role")
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Role> roles;
+
+    @Column(name = "email")
+    private String email;
 
     public String getSurname() {
         return surname;
@@ -17,10 +36,6 @@ public class User extends BaseEntity{
         this.surname = surname;
     }
 
-
-    @Column(name = "name")
-    private String name;
-
     public String getName() {
         return name;
     }
@@ -28,10 +43,6 @@ public class User extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
-
-
-    @Column(unique = true)
-    private String login;
 
     public String getLogin() {
         return login;
@@ -41,10 +52,6 @@ public class User extends BaseEntity{
         this.login = login;
     }
 
-
-    @Column(name = "password")
-    private String password;
-
     public String getPassword() {
         return password;
     }
@@ -53,10 +60,6 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    @Column(name = "Role")
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Role> roles;
-
     public List<Role> getRoles() {
         return roles;
     }
@@ -64,10 +67,6 @@ public class User extends BaseEntity{
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-
-
-    @Column(name = "email")
-    private String email;
 
     public String getEmail() {
         return email;
