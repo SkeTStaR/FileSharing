@@ -60,7 +60,7 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public List<Role> getRoles(String roleName) {
+    public List<Role> getRoles() {
         return roles;
     }
 

@@ -1,10 +1,14 @@
 package com.sketstar.filesharing.service.impl;
 
+import com.sketstar.filesharing.models.Role;
 import com.sketstar.filesharing.models.User;
+import com.sketstar.filesharing.repositories.RoleRepository;
 import com.sketstar.filesharing.repositories.UserRepository;
+import com.sketstar.filesharing.service.RoleService;
 import com.sketstar.filesharing.service.UserService;
 import org.springframework.stereotype.Service;
 
+import javax.naming.Name;
 import java.util.List;
 
 
@@ -12,10 +16,13 @@ import java.util.List;
 public class UserServiceimpl implements UserService {
 
     private final UserRepository userRepository;
+    private final RoleService roleService;
 
-    public UserServiceimpl(UserRepository userRepository) {
+    public UserServiceimpl(UserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
+        this.roleService = roleService;
     }
+
 
     @Override
     public User load(Long id) {
@@ -54,17 +61,17 @@ public class UserServiceimpl implements UserService {
     @Override
     public void addRole(String login, String roleName) {
 
-        /*
+
         User user = userRepository.findByLogin(login);
         if (user == null) {
             return;
         }
-        if (roleName == null) {
+        Role role = roleService.load(roleName);
+        if (role == null) {
             return;
         }
-        user.getRoles(roleName);
-        userRepository.save(user);
-        */
+        user.getRoles()
+         userRepository.save(user);
     }
 
     @Override
